@@ -60,7 +60,7 @@ func (s *Store) CreateGroup(members []string) (string, error) {
 		seen[m] = struct{}{}
 	}
 	id := fmt.Sprintf("%d", s.next.Add(1))
-	g := &Group{ID: id, Members: members}
+	g := &Group{ID: id, Members: append([]string(nil), members...)}
 	s.mu.Lock()
 	s.groups[id] = g
 	s.mu.Unlock()
